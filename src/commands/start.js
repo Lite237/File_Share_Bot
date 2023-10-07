@@ -104,16 +104,16 @@ const start = async (ctx) => {
                 await ctx.reply(
                     "Rejoignez notre chaîne pour plus de animes🔥\n\n👉 @AnimesGratuit\n👉 @AnimesGratuit"
                 );
-            }, 1000);
+            }, 50);
             return;
         }
 
         i++;
 
-        await ctx.sendDocument(sorted_file_info[i].tg_file_id, {
+        ctx.sendDocument(sorted_file_info[i].tg_file_id, {
             caption: sorted_file_info[i]?.caption || "",
         });
-    }, 1000);
+    }, 50);
 };
 
 export { start };

@@ -1,0 +1,19 @@
+{
+  "name": "tg-accept-join-request-bot",
+  "author": {
+    "name": "FreeTech"
+  },
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@prisma/client": "^5.0.0",
+    "dotenv": "^16.3.1",
+    "telegraf": "^4.12.2"
+  },
+  "devDependencies": {
+    "prisma": "^5.0.0"
+  },
+  "scripts": {
+    "postinstall": "prisma generate"
+  }
+}

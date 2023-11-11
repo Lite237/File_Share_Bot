@@ -121,12 +121,15 @@ const start = async (ctx) => {
         (a, b) => a.createdAt - b.createdAt
     );
 
+    console.log(sorted_file_info)
+
     try {
         await ctx.replyWithVideo(sorted_file_info[0].tg_file_id, {
-            sorted_file_info: sorted_file_info[0]?.caption || "",
+            caption: sorted_file_info[0]?.caption || "",
         });
+
         await ctx.replyWithVideo(sorted_file_info[1].tg_file_id, {
-            sorted_file_info: sorted_file_info[1]?.caption || "",
+            caption: sorted_file_info[1]?.caption || "",
         });
     } catch (error) {
         console.log(error)

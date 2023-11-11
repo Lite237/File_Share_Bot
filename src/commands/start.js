@@ -31,7 +31,7 @@ const start = async (ctx) => {
             "-1001781779494",
             ctx.from.id
         );
-    } catch (error) {}
+    } catch (error) { }
 
     if (!member) {
         await ctx.reply(
@@ -61,7 +61,7 @@ const start = async (ctx) => {
     }
 
     if (!episodeID) {
-        ctx.reply(
+        await ctx.reply(
             "Welcome to Anime Share Bot. I can send you Animes Video.\n\nPowered by @AnimesGratuit"
         );
         return;
@@ -110,7 +110,7 @@ const start = async (ctx) => {
 
         i++;
 
-        ctx.sendDocument(sorted_file_info[i].tg_file_id, {
+        await ctx.sendDocument(sorted_file_info[i].tg_file_id, {
             caption: sorted_file_info[i]?.caption || "",
         });
     }, 50);

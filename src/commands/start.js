@@ -121,7 +121,12 @@ const start = async (ctx) => {
         (a, b) => a.createdAt - b.createdAt
     );
 
-    await sendVideo(sorted_file_info, 0);
+    try {
+        await sendVideo(sorted_file_info, 0);
+    } catch (error) {
+        console.log(error)
+    }
+
 };
 
 export { start };

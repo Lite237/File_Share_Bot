@@ -124,13 +124,17 @@ const start = async (ctx) => {
     console.log(sorted_file_info)
 
     try {
-        ctx.replyWithVideo(sorted_file_info[0].tg_file_id, {
+        await ctx.replyWithVideo(sorted_file_info[0].tg_file_id, {
             caption: sorted_file_info[0]?.caption || "",
         });
 
-        ctx.replyWithVideo(sorted_file_info[1].tg_file_id, {
-            caption: sorted_file_info[1]?.caption || "",
-        });
+
+        await ctx.sendSticker(
+            "CAACAgUAAxkBAAIGumUhZHpHHWNhkFuC5oYyMHwUMZzrAAKZAAOpmuYWfOMe2DS8IdcwBA"
+        );
+        await ctx.reply(
+            "Rejoignez notre chaîne pour plus de animes🔥\n\n👉 @AnimesGratuit\n👉 @AnimesGratuit"
+        );
     } catch (error) {
         console.log(error)
     }

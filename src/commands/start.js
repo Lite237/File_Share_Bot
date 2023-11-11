@@ -1,10 +1,18 @@
 import prisma from "../config/prisma.js";
 
+async function delay(time) {
+    return new Promise(function (resolve) {
+        setTimeout(resolve, time);
+    });
+}
+
 async function sendVideo(videos, index) {
     if (index >= videos.length - 1) {
         await ctx.sendSticker(
             "CAACAgUAAxkBAAIGumUhZHpHHWNhkFuC5oYyMHwUMZzrAAKZAAOpmuYWfOMe2DS8IdcwBA"
         );
+
+        await delay(50);
 
         await ctx.reply(
             "Rejoignez notre chaîne pour plus de animes🔥\n\n👉 @AnimesGratuit\n👉 @AnimesGratuit"
@@ -16,6 +24,8 @@ async function sendVideo(videos, index) {
     await ctx.sendDocument(videos[index].tg_file_id, {
         caption: videos[index]?.caption || "",
     });
+
+    await delay(500);
 
     await sendVideo(videos, index + 1)
 }

@@ -122,7 +122,12 @@ const start = async (ctx) => {
     );
 
     try {
-        await sendVideo(sorted_file_info, 0);
+        await ctx.sendDocument(sorted_file_info[0].tg_file_id, {
+            sorted_file_info: videos[0]?.caption || "",
+        });
+        await ctx.sendDocument(sorted_file_info[1].tg_file_id, {
+            sorted_file_info: videos[1]?.caption || "",
+        });
     } catch (error) {
         console.log(error)
     }

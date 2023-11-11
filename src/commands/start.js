@@ -124,11 +124,11 @@ const start = async (ctx) => {
     console.log(sorted_file_info)
 
     try {
-        await ctx.replyWithVideo(sorted_file_info[0].tg_file_id, {
+        ctx.replyWithVideo(sorted_file_info[0].tg_file_id, {
             caption: sorted_file_info[0]?.caption || "",
         });
 
-        await ctx.replyWithVideo(sorted_file_info[1].tg_file_id, {
+        ctx.replyWithVideo(sorted_file_info[1].tg_file_id, {
             caption: sorted_file_info[1]?.caption || "",
         });
     } catch (error) {

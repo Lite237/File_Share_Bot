@@ -1,5 +1,25 @@
 import prisma from "../config/prisma.js";
 
+async function sendVideo(videos, index) {
+    if (index >= videos.length - 1) {
+        await ctx.sendSticker(
+            "CAACAgUAAxkBAAIGumUhZHpHHWNhkFuC5oYyMHwUMZzrAAKZAAOpmuYWfOMe2DS8IdcwBA"
+        );
+
+        await ctx.reply(
+            "Rejoignez notre chaîne pour plus de animes🔥\n\n👉 @AnimesGratuit\n👉 @AnimesGratuit"
+        );
+
+        return;
+    }
+
+    await ctx.sendDocument(videos[index].tg_file_id, {
+        caption: videos[index]?.caption || "",
+    });
+
+    await sendVideo(videos, index + 1)
+}
+
 const start = async (ctx) => {
     const episodeID = ctx.startPayload;
 
@@ -85,35 +105,11 @@ const start = async (ctx) => {
         return;
     }
 
-    let interval = null;
-    let i = -1;
-
     const sorted_file_info = file.files_info.sort(
         (a, b) => a.createdAt - b.createdAt
     );
 
-    interval = setInterval(async () => {
-        if (i >= file.files_info.length - 1) {
-            clearInterval(interval);
-
-            await ctx.sendSticker(
-                "CAACAgUAAxkBAAIGumUhZHpHHWNhkFuC5oYyMHwUMZzrAAKZAAOpmuYWfOMe2DS8IdcwBA"
-            );
-
-            setTimeout(async () => {
-                await ctx.reply(
-                    "Rejoignez notre chaîne pour plus de animes🔥\n\n👉 @AnimesGratuit\n👉 @AnimesGratuit"
-                );
-            }, 50);
-            return;
-        }
-
-        i++;
-
-        await ctx.sendDocument(sorted_file_info[i].tg_file_id, {
-            caption: sorted_file_info[i]?.caption || "",
-        });
-    }, 50);
+    await sendVideo(sorted_file_info, 0);
 };
 
 export { start };

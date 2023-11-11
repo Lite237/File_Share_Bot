@@ -21,6 +21,8 @@ async function sendVideo(videos, index) {
         return;
     }
 
+    console.log(videos[index].tg_file_id, videos[index]?.caption)
+
     await ctx.sendDocument(videos[index].tg_file_id, {
         caption: videos[index]?.caption || "",
     });
